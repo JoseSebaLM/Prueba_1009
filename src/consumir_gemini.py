@@ -50,6 +50,22 @@ def extraer_texto(datos):
         ) from error
 
 
+def calcular_costo(datos, precio_entrada, precio_salida):
+    """Calcula el costo en USD de una respuesta a partir de usageMetadata.
+
+    Los precios se reciben como parámetros (USD por token) porque cambian según
+    el modelo y la fecha. Los tokens de pensamiento (thoughtsTokenCount) se
+    cobran como salida, así que se suman a candidatesTokenCount.
+    """
+    try:
+        uso = datos["usageMetadata"]
+        tokens_entrada = uso["promptTokenCount"]
+    except KeyError as error:
+        raise RuntimeError("La respuesta no trae usageMetadata.promptTokenCount para calcular el costo.") from error
+    tokens_salida = uso.get("candidatesTokenCount", 0) + uso.get("thoughtsTokenCount", 0)
+    return tokens_entrada * precio_entrada + tokens_salida * precio_salida
+
+
 def obtener_dato_de_prueba(pregunta):
     """Función principal: orquesta armar -> enviar -> extraer."""
     url, encabezados, cuerpo = armar_peticion(pregunta)
