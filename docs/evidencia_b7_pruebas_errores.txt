@@ -1,0 +1,31 @@
+Evidencia Bloque 7: pruebas de validación y manejo de errores
+===============================================================
+Fecha: 2026-10-25 14:24:04 -0300   Módulo: src/consumir_gemini.py   Modelo: gemini-3.5-flash-lite
+
+--- Prueba 1: llave inválida (variable de entorno falsa; load_dotenv no la sobrescribe) ---
+> $env:GEMINI_API_KEY = "llave-invalida-de-prueba"; python src/consumir_gemini.py
+No se pudo completar la operación: La API respondió con error HTTP 400: {
+  "error": {
+    "code": 400,
+    "message": "API key not valid. Please pass a valid API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "API_KEY_INVALID",
+        "domain": "googleapis.com",
+        "
+
+--- Prueba 2: entrada vacía ---
+> python -c "from src.consumir_gemini import obtener_dato_de_prueba as f; f('   ')"
+ValueError: La pregunta debe ser un texto no vacío.
+
+--- Prueba 3: camino feliz (pregunta válida) ---
+> python src/consumir_gemini.py
+¡Conexión establecida y funcionando perfectamente!
+
+--- Prueba extra A: error de conexión (dominio inexistente) ---
+RuntimeError: No se pudo conectar con el servicio. Intenta de nuevo en unos segundos.
+
+--- Prueba extra B: dato faltante (JSON válido sin 'candidates') ---
+RuntimeError: La respuesta no trae el texto generado en candidates[0].content.parts[0].text.
