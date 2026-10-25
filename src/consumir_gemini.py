@@ -11,14 +11,14 @@ MODELO = "gemini-3.5-flash-lite"  # nombre exacto del modelo, confirmado en AI S
 URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 
-def armar_peticion(pregunta):
+def armar_peticion(pregunta, modelo=MODELO):
     """Valida la pregunta y arma la URL, los encabezados y el cuerpo para generateContent."""
     if not isinstance(pregunta, str) or not pregunta.strip():
         raise ValueError("La pregunta debe ser un texto no vacío.")
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise ValueError("Falta GEMINI_API_KEY: revisa tu archivo .env en la raíz del proyecto.")
-    url = f"{URL_BASE}/{MODELO}:generateContent"
+    url = f"{URL_BASE}/{modelo}:generateContent"
     encabezados = {"x-goog-api-key": api_key}  # la llave va en un header, no en la URL
     cuerpo = {"contents": [{"parts": [{"text": pregunta}]}]}
     return url, encabezados, cuerpo
@@ -41,13 +41,21 @@ def enviar_peticion(url, encabezados, cuerpo):
 
 
 def extraer_texto(datos):
-    """Devuelve el texto generado; avisa con claridad si no está donde se esperaba."""
+    """Devuelve el texto generado; avisa con claridad si no está donde se esperaba.
+
+    El modelo puede dividir la respuesta en varias partes, así que se unen todas
+    las partes de texto (sin las de razonamiento interno, marcadas con "thought").
+    """
     try:
-        return datos["candidates"][0]["content"]["parts"][0]["text"]
+        partes = datos["candidates"][0]["content"]["parts"]
     except (KeyError, IndexError) as error:
         raise RuntimeError(
-            "La respuesta no trae el texto generado en candidates[0].content.parts[0].text."
+            "La respuesta no trae el texto generado en candidates[0].content.parts."
         ) from error
+    textos = [parte["text"] for parte in partes if "text" in parte and not parte.get("thought")]
+    if not textos:
+        raise RuntimeError("La respuesta llegó sin texto generado.")
+    return "".join(textos)
 
 
 def calcular_costo(datos, precio_entrada, precio_salida):

@@ -9,7 +9,7 @@ flowchart TD
     A["armar_peticion(pregunta)<br/>valida: pregunta no vacía → ValueError<br/>valida: llave presente → ValueError"]
     E["enviar_peticion(url, encabezados, cuerpo)<br/>try: requests.post(timeout=30)"]
     API[["API Gemini<br/>POST /v1beta/models/MODELO:generateContent"]]
-    X["extraer_texto(datos)<br/>candidates[0].content.parts[0].text"]
+    X["extraer_texto(datos)<br/>une el texto de candidates[0].content.parts"]
     C["calcular_costo(datos, precio_entrada, precio_salida)<br/>usageMetadata: prompt + candidates + thoughts"]
 
     U -- "pregunta (str)" --> A
