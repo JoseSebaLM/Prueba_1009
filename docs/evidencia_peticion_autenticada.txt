@@ -1,0 +1,39 @@
+Evidencia: primera petición autenticada a Gemini (Bloque 4)
+==========================================================
+Fecha y hora:   2026-10-25 14:23:09 -0300
+Método:         POST
+Endpoint:       https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent
+Autenticación:  header x-goog-api-key (valor leído desde .env; no se incluye aquí)
+Herramienta:    petición REST directa (requests), equivalente a Thunder Client/Postman
+
+Cuerpo enviado:
+{
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": "Hola, ¿puedes confirmar en una frase que esta conexión funciona?"
+        }
+      ]
+    }
+  ]
+}
+
+Código de estado: 200
+
+Texto generado (candidates[0].content.parts[0].text):
+¡Hola! Sí, esta conexión funciona perfectamente.
+
+usageMetadata:
+{
+  "promptTokenCount": 15,
+  "candidatesTokenCount": 10,
+  "totalTokenCount": 25,
+  "promptTokensDetails": [
+    {
+      "modality": "TEXT",
+      "tokenCount": 15
+    }
+  ],
+  "serviceTier": "standard"
+}
