@@ -6,7 +6,7 @@ Proyecto del programa *Especialización en Desarrollo con IA Generativa* (Skilln
 
 ## Requisitos
 
-- **Python 3** (probado con Python 3.14.3) y **Git**.
+- **Python 3.11 o superior** (probado con Python 3.14.3; las versiones de `requirements.txt` también tienen instaladores para 3.11, 3.12 y 3.13) y **Git**.
 - Una **API key gratuita de Google AI Studio**: https://aistudio.google.com/apikey (no requiere tarjeta).
 
 ## Instalación
@@ -105,4 +105,9 @@ Si algo falla (llave inválida, sin conexión, cuota agotada, modelo saturado), 
 
 ## Registro del ensayo de instalación limpia
 
-*(se completa en la sección siguiente tras el ensayo)*
+- **Fecha:** 2026-10-25
+- **Dónde:** Windows 11, PowerShell, en una carpeta nueva fuera de la carpeta de trabajo (`C:\dev\prueba-gate1`), clonando desde GitHub, con un entorno virtual nuevo y siguiendo solo los pasos de este README.
+- **Pasos:** `git clone` → `python -m venv .venv` → activar → `pip install -r requirements.txt` → `Copy-Item .env.example .env` y pegar la llave → `python main.py`.
+- **Resultado:** la instalación terminó sin errores. `python main.py`, `python src/consumir_gemini.py` y `python -m prompts.test_consistencia` (5/5 en los 3 prompts) corrieron sin traceback y con respuestas reales del modelo.
+- **Seguridad, verificada en la copia clonada:** `git status` no muestra `.env` ni `.venv`; `git ls-files` solo incluye `.env.example`; `git log --all --oneline -- .env` no devuelve nada (el `.env` nunca se subió).
+- **Hallazgos:** ninguno que requiriera corrección. Como el equipo solo tiene Python 3.14, se verificó además con `pip download --python-version` que todas las dependencias fijadas tienen instaladores para Python 3.11, 3.12 y 3.13.
