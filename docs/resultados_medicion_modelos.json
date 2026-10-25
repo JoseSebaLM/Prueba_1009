@@ -1,0 +1,238 @@
+{
+  "fecha": "2026-10-25T14:33:40-03:00",
+  "pregunta_latencia": "Un alumno pregunta: ¿cómo despejo x en 3x + 5 = 20? Dale una pista sin resolverlo.",
+  "modelos": {
+    "gemini-3.5-flash-lite": {
+      "precios_usd_por_millon": {
+        "entrada": 0.3,
+        "salida": 2.5
+      },
+      "resumen": {
+        "peticiones_exitosas": "4/4",
+        "latencia_promedio_s": 2.65,
+        "costo_promedio_usd": 0.00023965,
+        "tokens_salida_promedio": 92
+      },
+      "mediciones_latencia": [
+        {
+          "ok": true,
+          "latencia_s": 3.29,
+          "tokens_entrada": 28,
+          "tokens_salida": 114,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0002934,
+          "texto": "¡Hola! Para despejar la $x$, piensa en el objetivo principal: **dejar sola a la $x$** en un lado del igual. \n\nPara lograrlo, tienes que \"quitarle\" los números que la acompañan (el $3$ y el $5$) paso a paso. \n\nComo pista: empieza deshaciéndote de lo que está sumando o restando antes de tocar lo que está multiplicando. ¿Qué número está sumando a la $x$ y cómo podrías eliminarlo de ese lado?"
+        },
+        {
+          "ok": true,
+          "latencia_s": 2.27,
+          "tokens_entrada": 28,
+          "tokens_salida": 76,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0001984,
+          "texto": "¡Hola! Una buena forma de empezar es pensar en **dejar sola a la x** en un lado de la ecuación. \n\nPara lograrlo, fíjate que al lado de la $3x$ hay un $+ 5$ sumando. ¿Qué operación contraria podrías aplicar en **ambos lados** de la ecuación para eliminar ese $5$?"
+        },
+        {
+          "ok": true,
+          "latencia_s": 2.76,
+          "tokens_entrada": 28,
+          "tokens_salida": 111,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0002859,
+          "texto": "¡Hola! Para despejar la $x$, piensa en el objetivo: **dejar a la $x$ solita** de un lado del igual. \n\nPara lograrlo, tienes que ir \"quitando\" lo que la acompaña paso a paso. La regla de oro es hacer la operación contraria. \n\nPiénsalo así: el $5$ está sumando con el $3x$. ¿Qué operación tendrías que aplicar en **ambos lados** de la ecuación para deshacerte de ese $+5$?"
+        },
+        {
+          "ok": true,
+          "latencia_s": 2.27,
+          "tokens_entrada": 28,
+          "tokens_salida": 69,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0001809,
+          "texto": "¡Hola! Una buena pista es pensar en **dejar sola a la $x$**. \n\nPara lograrlo, recuerda que puedes mover los números al otro lado del signo igual haciendo la operación contraria. Primero, ¿qué podrías hacer con ese $+5$ que está sumando al $3x$? ¡Inténtalo!"
+        }
+      ],
+      "calidad": [
+        {
+          "eje": "algebra_y_funciones",
+          "pregunta": "Soy estudiante de 4° medio. ¿Cómo despejo x en 2(x - 3) = 4x + 2? Dame solo una pista, sin resolverlo.",
+          "criterio": "Da una pista útil (distribuir el 2) y NO entrega el resultado x = -4.",
+          "ok": true,
+          "latencia_s": 2.27,
+          "tokens_entrada": 39,
+          "tokens_salida": 25,
+          "tokens_pensamiento": 0,
+          "costo_usd": 7.42e-05,
+          "texto": "**Pista:** Comienza aplicando la propiedad distributiva en el lado izquierdo de la ecuación para deshacerte del paréntesis."
+        },
+        {
+          "eje": "numeros",
+          "pregunta": "Una polera costaba $12.000 y ahora cuesta $9.000. ¿Qué porcentaje de descuento tiene? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 25 %, con procedimiento claro.",
+          "ok": true,
+          "latencia_s": 2.5,
+          "tokens_entrada": 36,
+          "tokens_salida": 164,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0004208,
+          "texto": "Aquí tienes la explicación en 3 simples pasos:\n\n1. **Calcula cuánto dinero se descontó:**\n   Restamos el precio actual al precio original: \n   $12.000 - $9.000 = **$3.000** de descuento.\n\n2. **Calcula qué parte del precio original representa ese descuento:**\n   Dividimos el descuento entre el precio inicial: \n   3.000 ÷ 12.000 = **0,25**\n\n3. **Convierte el resultado en porcentaje:**\n   Multiplicamos por 100: \n   0,25 × 100 = **25%**\n\nLa polera tiene un **25% de descuento**."
+        },
+        {
+          "eje": "probabilidad_y_estadistica",
+          "pregunta": "Si lanzo dos dados, ¿cuál es la probabilidad de que la suma sea 7? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 6/36 = 1/6, con los 6 casos favorables.",
+          "ok": true,
+          "latencia_s": 2.7,
+          "tokens_entrada": 27,
+          "tokens_salida": 200,
+          "tokens_pensamiento": 0,
+          "costo_usd": 0.0005081,
+          "texto": "La probabilidad de que la suma sea 7 al lanzar dos dados es de **$\\frac{1}{6}$** (o aproximadamente **16.67%**). Aquí te lo explico en 3 pasos:\n\n1. **Casos totales:** Cada dado tiene 6 caras, así que al lanzar dos dados hay un total de $6 \\times 6 = 36$ combinaciones posibles.\n2. **Casos favorables:** Las únicas combinaciones cuyas sumas dan 7 son 6 pares:\n   * (1, 6)\n   * (2, 5)\n   * (3, 4)\n   * (4, 3)\n   * (5, 2)\n   * (6, 1)\n3. **Cálculo:** Divides los casos favorables entre los casos totales: \n   $$\\frac{6}{36} = \\frac{1}{6}$$"
+        }
+      ]
+    },
+    "gemini-3.6-flash": {
+      "precios_usd_por_millon": {
+        "entrada": 0.75,
+        "salida": 3.75
+      },
+      "resumen": {
+        "peticiones_exitosas": "3/4",
+        "latencia_promedio_s": 12.88,
+        "costo_promedio_usd": 0.00273225,
+        "tokens_salida_promedio": 723
+      },
+      "mediciones_latencia": [
+        {
+          "ok": true,
+          "latencia_s": 11.17,
+          "tokens_entrada": 28,
+          "tokens_salida": 116,
+          "tokens_pensamiento": 708,
+          "costo_usd": 0.003111,
+          "texto": "Para dejar a la **$x$** sola, imagina que estás desempaquetando un regalo: debes quitar primero lo que está más \"afuera\".\n\n**Tu pista:** \nPrimero concéntrate en quitar ese **$+ 5$**. ¿Qué operación es la contraria a sumar y qué le pasaría al $20$ si la aplicas en ambos lados de la ecuación? \n\nUna vez que quites el $5$, solo te quedará lidiar con el $3$ que acompaña a la $x$. ¡Inténtalo!"
+        },
+        {
+          "ok": true,
+          "latencia_s": 15.08,
+          "tokens_entrada": 28,
+          "tokens_salida": 89,
+          "tokens_pensamiento": 470,
+          "costo_usd": 0.00211725,
+          "texto": "Para dejar a la **$x$** sola, piensa en ir \"desarmando\" la ecuación paso a paso:\n\n**Pista:** Empieza por deshacerte del número que está sumando ($+5$). ¿Qué operación es la contraria a sumar y qué le pasaría al $20$ si se la aplicas?\n\n¡Inténtalo y me dices qué te queda antes de hacer el último paso!"
+        },
+        {
+          "ok": false,
+          "error": "La API respondió con error HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",",
+          "latencia_s": 25.57
+        },
+        {
+          "ok": true,
+          "latencia_s": 12.39,
+          "tokens_entrada": 28,
+          "tokens_salida": 108,
+          "tokens_pensamiento": 678,
+          "costo_usd": 0.0029685,
+          "texto": "Para dejar a la **$x$** sola, imagina que estás desempacando un regalo: tienes que quitar primero lo que está más afuera.\n\n**Tu pista:** \nEmpieza por deshacerte del número que está sumando ($+5$). Para pasarlo al otro lado del signo igual, haz la **operación contraria** (restar). \n\nUna vez que hagas eso, ¡estarás a solo un paso de encontrar el valor de $x$! ¿Qué te queda de cada lado?"
+        }
+      ],
+      "calidad": [
+        {
+          "eje": "algebra_y_funciones",
+          "pregunta": "Soy estudiante de 4° medio. ¿Cómo despejo x en 2(x - 3) = 4x + 2? Dame solo una pista, sin resolverlo.",
+          "criterio": "Da una pista útil (distribuir el 2) y NO entrega el resultado x = -4.",
+          "ok": true,
+          "latencia_s": 5.06,
+          "tokens_entrada": 39,
+          "tokens_salida": 54,
+          "tokens_pensamiento": 471,
+          "costo_usd": 0.001998,
+          "texto": "Para empezar, aplica la **propiedad distributiva** en el lado izquierdo de la ecuación: multiplica el $2$ por cada uno de los términos que están dentro del paréntesis para poder eliminarlo. \n\n¡Inténtalo y me cuentas si necesitas otra pista!"
+        },
+        {
+          "eje": "numeros",
+          "pregunta": "Una polera costaba $12.000 y ahora cuesta $9.000. ¿Qué porcentaje de descuento tiene? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 25 %, con procedimiento claro.",
+          "ok": true,
+          "latencia_s": 6.15,
+          "tokens_entrada": 36,
+          "tokens_salida": 155,
+          "tokens_pensamiento": 623,
+          "costo_usd": 0.0029445,
+          "texto": "La polera tiene un **25% de descuento**. \n\nAquí tienes la explicación en 3 sencillos pasos:\n\n1. **Calcula el monto del descuento:** Resta el precio nuevo al precio original.\n   * $12.000 - $9.000 = **$3.000** (eso fue lo que bajó).\n\n2. **Divide el descuento por el precio original:**\n   * 3.000 ÷ 12.000 = **0,25**\n\n3. **Conviértelo a porcentaje:** Multiplica el resultado por 100.\n   * 0,25 × 100 = **25%**"
+        },
+        {
+          "eje": "probabilidad_y_estadistica",
+          "pregunta": "Si lanzo dos dados, ¿cuál es la probabilidad de que la suma sea 7? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 6/36 = 1/6, con los 6 casos favorables.",
+          "ok": true,
+          "latencia_s": 6.37,
+          "tokens_entrada": 27,
+          "tokens_salida": 215,
+          "tokens_pensamiento": 660,
+          "costo_usd": 0.0033015,
+          "texto": "La probabilidad de que la suma sea 7 es de **1/6** (o aproximadamente **16.67%**). \n\nAquí tienes la explicación en 3 sencillos pasos:\n\n1. **Calcula el total de resultados posibles:** \n   Cada dado tiene 6 caras, así que al lanzar dos dados hay $6 \\times 6 = \\mathbf{36}$ combinaciones posibles en total.\n\n2. **Cuenta las combinaciones que suman 7:** \n   Hay **6 combinaciones** favorables:\n   * (1, 6)\n   * (2, 5)\n   * (3, 4)\n   * (4, 3)\n   * (5, 2)\n   * (6, 1)\n\n3. **Divide los casos favorables entre el total:** \n   $\\frac{6}{36}$ simplificado es **$\\frac{1}{6}$** (que equivale al **16.67%**)."
+        }
+      ]
+    },
+    "gemini-3.8-flash": {
+      "precios_usd_por_millon": {
+        "entrada": 0.75,
+        "salida": 3.75
+      },
+      "resumen": {
+        "peticiones_exitosas": "0/4",
+        "latencia_promedio_s": null,
+        "costo_promedio_usd": null,
+        "tokens_salida_promedio": null
+      },
+      "mediciones_latencia": [
+        {
+          "ok": false,
+          "error": "El servicio tardó demasiado en responder. Intenta de nuevo.",
+          "latencia_s": 30.67
+        },
+        {
+          "ok": false,
+          "error": "El servicio tardó demasiado en responder. Intenta de nuevo.",
+          "latencia_s": 30.6
+        },
+        {
+          "ok": false,
+          "error": "El servicio tardó demasiado en responder. Intenta de nuevo.",
+          "latencia_s": 30.5
+        },
+        {
+          "ok": false,
+          "error": "La API respondió con error HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, he",
+          "latencia_s": 1.65
+        }
+      ],
+      "calidad": [
+        {
+          "eje": "algebra_y_funciones",
+          "pregunta": "Soy estudiante de 4° medio. ¿Cómo despejo x en 2(x - 3) = 4x + 2? Dame solo una pista, sin resolverlo.",
+          "criterio": "Da una pista útil (distribuir el 2) y NO entrega el resultado x = -4.",
+          "ok": false,
+          "error": "La API respondió con error HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, he",
+          "latencia_s": 1.65
+        },
+        {
+          "eje": "numeros",
+          "pregunta": "Una polera costaba $12.000 y ahora cuesta $9.000. ¿Qué porcentaje de descuento tiene? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 25 %, con procedimiento claro.",
+          "ok": false,
+          "error": "La API respondió con error HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",",
+          "latencia_s": 1.9
+        },
+        {
+          "eje": "probabilidad_y_estadistica",
+          "pregunta": "Si lanzo dos dados, ¿cuál es la probabilidad de que la suma sea 7? Explícalo en pocos pasos.",
+          "criterio": "Resultado correcto: 6/36 = 1/6, con los 6 casos favorables.",
+          "ok": false,
+          "error": "La API respondió con error HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, he",
+          "latencia_s": 1.64
+        }
+      ]
+    }
+  }
+}
