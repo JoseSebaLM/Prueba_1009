@@ -1,0 +1,27 @@
+{
+  "fecha": "2026-10-25T14:39:31-03:00",
+  "modelo": "gemini-3.5-flash-lite",
+  "prompts": {
+    "clasificar_eje": {
+      "exitos": 5,
+      "intentos": 5,
+      "consistencia": "100%",
+      "usa_response_schema": true,
+      "fallos": []
+    },
+    "generar_pista": {
+      "exitos": 5,
+      "intentos": 5,
+      "consistencia": "100%",
+      "usa_response_schema": true,
+      "fallos": []
+    },
+    "extraer_datos_problema": {
+      "exitos": 5,
+      "intentos": 5,
+      "consistencia": "100%",
+      "usa_response_schema": false,
+      "fallos": []
+    }
+  }
+}
