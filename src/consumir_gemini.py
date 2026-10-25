@@ -1,6 +1,8 @@
 """Consulta a Gemini y devuelve el texto generado, con validación y manejo de errores."""
 
+import json
 import os
+import re
 
 import requests
 from dotenv import load_dotenv
@@ -11,8 +13,12 @@ MODELO = "gemini-3.5-flash-lite"  # nombre exacto del modelo, confirmado en AI S
 URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 
 
-def armar_peticion(pregunta, modelo=MODELO):
-    """Valida la pregunta y arma la URL, los encabezados y el cuerpo para generateContent."""
+def armar_peticion(pregunta, system_instruction=None, response_schema=None, modelo=MODELO):
+    """Valida la pregunta y arma la URL, los encabezados y el cuerpo para generateContent.
+
+    El prompt de sistema (system_instruction) y el esquema de salida JSON
+    (response_schema) son opcionales: sin ellos, la petición es la misma de antes.
+    """
     if not isinstance(pregunta, str) or not pregunta.strip():
         raise ValueError("La pregunta debe ser un texto no vacío.")
     api_key = os.getenv("GEMINI_API_KEY")
@@ -21,6 +27,13 @@ def armar_peticion(pregunta, modelo=MODELO):
     url = f"{URL_BASE}/{modelo}:generateContent"
     encabezados = {"x-goog-api-key": api_key}  # la llave va en un header, no en la URL
     cuerpo = {"contents": [{"parts": [{"text": pregunta}]}]}
+    if system_instruction:
+        cuerpo["systemInstruction"] = {"parts": [{"text": system_instruction}]}  # camelCase exacto de la API
+    if response_schema is not None:
+        cuerpo["generationConfig"] = {
+            "responseMimeType": "application/json",
+            "responseSchema": response_schema,
+        }
     return url, encabezados, cuerpo
 
 
@@ -56,6 +69,23 @@ def extraer_texto(datos):
     if not textos:
         raise RuntimeError("La respuesta llegó sin texto generado.")
     return "".join(textos)
+
+
+def parsear_respuesta_json(texto, claves_requeridas):
+    """Limpia marcas de markdown, convierte el texto a dict y valida las claves requeridas."""
+    texto_limpio = texto.strip()
+    texto_limpio = re.sub(r"^```(?:json)?\s*", "", texto_limpio)  # quita ``` o ```json del inicio
+    texto_limpio = re.sub(r"\s*```$", "", texto_limpio)  # quita ``` del final
+    try:
+        datos = json.loads(texto_limpio)
+    except json.JSONDecodeError as error:
+        raise ValueError("La respuesta del modelo no es JSON válido.") from error
+    if not isinstance(datos, dict):
+        raise ValueError("La respuesta del modelo es JSON, pero no es un objeto con claves.")
+    faltantes = [clave for clave in claves_requeridas if clave not in datos]
+    if faltantes:
+        raise ValueError(f"A la respuesta le faltan las claves: {faltantes}")
+    return datos
 
 
 def calcular_costo(datos, precio_entrada, precio_salida):
