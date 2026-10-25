@@ -9,8 +9,11 @@ from dotenv import load_dotenv
 
 load_dotenv()  # lee el archivo .env de la raíz del proyecto
 
-MODELO = "gemini-3.5-flash-lite"  # nombre exacto del modelo, confirmado en AI Studio
+MODELO = "gemini-3.5-flash-lite"  # elegido en docs/decision-arquitectura.md
 URL_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
+# Precios de pago de MODELO en USD por token (ai.google.dev/gemini-api/docs/pricing, consultada 2026-10-25)
+PRECIO_ENTRADA = 0.30 / 1_000_000
+PRECIO_SALIDA = 2.50 / 1_000_000
 
 
 def armar_peticion(pregunta, system_instruction=None, response_schema=None, modelo=MODELO):
